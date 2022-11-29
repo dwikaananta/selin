@@ -51,7 +51,7 @@ Route::middleware('guest')->group(function () {
         if (Auth::attempt($credentials)) {
             $req->session()->regenerate();
 
-            return redirect()->intended('users');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
@@ -77,3 +77,8 @@ Route::middleware('auth')->group(function () {
         return redirect('/login');
     });
 });
+
+foreach (glob(__DIR__."/webs/*.php") as $filename)
+{
+    include $filename;
+}

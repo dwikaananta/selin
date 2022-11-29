@@ -54,11 +54,15 @@ class UpacaraController extends Controller
         return redirect('/upacara')->with('success', 'Berhasil tambah data Upacara !');
     }
 
-    public function show(Upacara $upacara)
+    public function show(Upacara $upacara, Request $req)
     {
         $title = 'Lihat Data Upacara';
 
-        return view('upacara.show', compact('title', 'upacara'));
+        if ($req->laporan) {
+            return view('upacara.laporan', compact('title', 'upacara'));
+        } else {
+            return view('upacara.show', compact('title', 'upacara'));
+        }
     }
 
     public function edit(Upacara $upacara)
@@ -70,6 +74,14 @@ class UpacaraController extends Controller
 
     public function update(Request $req, Upacara $upacara)
     {
+        if ($req->status) {
+            $upacara->update(['status' => $req->status]);
+
+            return response([
+                'msg' => 'Berhasil update status Upacara !',
+            ]);
+        }
+
         $data = $req->validate([
             'nama' => 'required',
             'tanggal_mulai' => 'required',

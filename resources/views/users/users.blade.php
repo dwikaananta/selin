@@ -11,7 +11,6 @@
                 <tr>
                     <th>no</th>
                     <th>nama</th>
-                    <th>email</th>
                     <th>no_hp</th>
                     <th>jenis_kelamin</th>
                     <th>tempat_lahir</th>
@@ -50,7 +49,6 @@
                         return `<tr>
                             <td>${res.data.users.from ++}</td>
                             <td>${user.nama}</td>
-                            <td>${user.email}</td>
                             <td>${user.no_hp}</td>
                             <td>${jenis_kelamin[user.jenis_kelamin]}</td>
                             <td>${user.tempat_lahir}</td>
@@ -58,10 +56,10 @@
                             <td>${user.kk}</td>
                             <td>${status_kk[user.status_kk]}</td>
                             <td>${status_user[user.status]}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="${url}/${user.id}" class="fa mx-1 fa-eye text-info"></a>
                                 <a href="${url}/${user.id}/edit" class="fa mx-1 fa-edit text-success"></a>
-                                <span type="button" class="fa mx-1 fa-trash-alt text-danger" onclick="handleDelete('${url}', ${user.id}, '{{ csrf_token() }}')"></span>
+                                <span type="button" class="fa mx-1 fa-trash text-danger" onclick="handleDelete('${url}', ${user.id}, '{{ csrf_token() }}')"></span>
                             </td>
                         </tr>`
                     })

@@ -52,26 +52,29 @@
                         array_keys($status_kk),
                     );
                 @endphp
-                <x-form-radio name="status_kk" :dataArr="$dataArr" :inline="true" defaultValue="{{ $user->status_kk }}"></x-form-radio>
+                <x-form-radio name="status_kk" :dataArr="$dataArr" :inline="true" defaultValue="{{ $user->status_kk }}">
+                </x-form-radio>
             </div>
             <div class="col-4">
                 <x-form-textarea name="alamat" defaultValue="{{ $user->alamat }}"></x-form-textarea>
             </div>
-            <div class="col-4">
-                @php
-                    $dataArr = array_map(
-                        function ($val, $key) {
-                            return [
-                                'key' => $key,
-                                'val' => $val,
-                            ];
-                        },
-                        $status_user,
-                        array_keys($status_user),
-                    );
-                @endphp
-                <x-form-select name="status" :dataArr="$dataArr" defaultValue="{{ $user->status }}"></x-form-select>
-            </div>
+            @if (auth()->user()->status != 3)
+                <div class="col-4">
+                    @php
+                        $dataArr = array_map(
+                            function ($val, $key) {
+                                return [
+                                    'key' => $key,
+                                    'val' => $val,
+                                ];
+                            },
+                            $status_user,
+                            array_keys($status_user),
+                        );
+                    @endphp
+                    <x-form-select name="status" :dataArr="$dataArr" defaultValue="{{ $user->status }}"></x-form-select>
+                </div>
+            @endif
             <div class="col-4">
                 <x-form-input name="password" type="password"></x-form-input>
             </div>

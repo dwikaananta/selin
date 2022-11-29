@@ -43,10 +43,10 @@
                             <td>${u.nama}</td>
                             <td>${u.nominal_dibutuhkan}</td>
                             <td>${u.nominal_per_orang}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="${url}/${u.id}" class="fa mx-1 fa-eye text-info"></a>
                                 <a href="${url}/${u.id}/edit" class="fa mx-1 fa-edit text-success"></a>
-                                <span type="button" class="fa mx-1 fa-trash-alt text-danger" onclick="handleDelete('${url}', ${u.id}, '{{ csrf_token() }}')"></span>
+                                <span type="button" class="fa mx-1 fa-trash text-danger" onclick="handleDelete('${url}', ${u.id}, '{{ csrf_token() }}')"></span>
                             </td>
                         </tr>`
                     })

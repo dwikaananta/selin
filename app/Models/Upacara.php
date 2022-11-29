@@ -33,4 +33,9 @@ class Upacara extends Model
     {
         return $this->hasMany(DanaPunia::class, 'upacara_id', 'id');
     }
+
+    public function kas_keluar()
+    {
+        return $this->hasMany(KasKeluar::class, 'upacara_id', 'id');
+    }
 }

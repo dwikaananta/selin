@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public $status_user = [
         1 => 'Ketua',
-        2 => 'Sekre',
+        2 => 'Sekretaris',
         3 => 'Anggota',
     ];
 

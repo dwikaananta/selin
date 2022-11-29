@@ -16,26 +16,35 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link @if (request()->is('users')) active @endif" aria-current="page"
-                            href="/users">
-                            <i class="fa fa-users mr-2"></i>
-                            Users
+                        <a class="nav-link @if (request()->is('users/' . auth()->user()->id . '/edit')) active @endif" aria-current="page"
+                            href="/users/{{ auth()->user()->id }}/edit">
+                            <i class="fa fa-user mr-2"></i>
+                            Profile
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link @if (request()->is('upacara')) active @endif" aria-current="page"
-                            href="/upacara">
-                            <i class="fa fa-users mr-2"></i>
-                            Upacara
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @if (request()->is('urunan')) active @endif" aria-current="page"
-                            href="/urunan">
-                            <i class="fa fa-users mr-2"></i>
-                            Urunan
-                        </a>
-                    </li>
+                    @if (auth()->user()->status != 3)
+                        <li class="nav-item">
+                            <a class="nav-link @if (request()->is('users')) active @endif" aria-current="page"
+                                href="/users">
+                                <i class="fa fa-users mr-2"></i>
+                                Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if (request()->is('upacara')) active @endif" aria-current="page"
+                                href="/upacara">
+                                <i class="fa fa-users mr-2"></i>
+                                Upacara
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if (request()->is('urunan')) active @endif" aria-current="page"
+                                href="/urunan">
+                                <i class="fa fa-users mr-2"></i>
+                                Urunan
+                            </a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link @if (request()->is('login')) active @endif" aria-current="page"
                             href="/logout">

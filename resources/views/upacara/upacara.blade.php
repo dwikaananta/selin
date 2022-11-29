@@ -12,11 +12,9 @@
                     <th>no</th>
                     <th>nama</th>
                     <th>tanggal_mulai</th>
-                    <th>tanggal_selesai</th>
                     <th>total_dana_punia</th>
                     <th>total_kas_keluar</th>
                     <th>total_sesari</th>
-                    <th>created_at</th>
                     <th>bars</th>
                 </tr>
             </thead>
@@ -46,15 +44,15 @@
                             <td>${res.data.upacara.from ++}</td>
                             <td>${u.nama}</td>
                             <td>${u.tanggal_mulai}</td>
-                            <td>${u.tanggal_selesai}</td>
                             <td>${u.total_dana_punia}</td>
                             <td>${u.total_kas_keluar}</td>
                             <td>${u.total_sesari}</td>
-                            <td>${u.created_at}</td>
-                            <td>
+                            <td class="text-center">
+                                ${u.status == 1 ? `<a href="${url}/${u.id}?laporan=1" class="fa mx-1 fa-print text-info"></a>` : ''}
+                                ${u.status == 1 ? '' : `<span type="button" onclick="handleUpdate(${u.id})" class="fa mx-1 fa-check"></span>`}
                                 <a href="${url}/${u.id}" class="fa mx-1 fa-eye text-info"></a>
                                 <a href="${url}/${u.id}/edit" class="fa mx-1 fa-edit text-success"></a>
-                                <span type="button" class="fa mx-1 fa-trash-alt text-danger" onclick="handleDelete('${url}', ${u.id}, '{{ csrf_token() }}')"></span>
+                                <span type="button" class="fa mx-1 fa-trash text-danger" onclick="handleDelete('${url}', ${u.id}, '{{ csrf_token() }}')"></span>
                             </td>
                         </tr>`
                     })
@@ -69,5 +67,17 @@
         }
 
         fetchData(1);
+
+        const handleUpdate = async (id) => {
+            try {
+                const res = await axios.patch(`${url}/${id}`, { status: 1 })
+                if (res.data && res.data.msg) {
+                    alert(res.data.msg);
+                    fetchData();
+                }
+            } catch (err) {
+                console.error(err.response);
+            }
+        }
     </script>
 @endsection
