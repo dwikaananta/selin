@@ -11,7 +11,7 @@
                     <a class="nav-link @if (request()->is('/')) active @endif" aria-current="page"
                         href="/">
                         <i class="fa fa-home mr-2"></i>
-                        Home
+                        Beranda
                     </a>
                 </li>
                 @auth
@@ -19,7 +19,7 @@
                         <a class="nav-link @if (request()->is('users/' . auth()->user()->id . '/edit')) active @endif" aria-current="page"
                             href="/users/{{ auth()->user()->id }}/edit">
                             <i class="fa fa-user mr-2"></i>
-                            Profile
+                            Profil
                         </a>
                     </li>
                     @if (auth()->user()->status != 3)
@@ -27,7 +27,7 @@
                             <a class="nav-link @if (request()->is('users')) active @endif" aria-current="page"
                                 href="/users">
                                 <i class="fa fa-users mr-2"></i>
-                                Users
+                                Anggota
                             </a>
                         </li>
                         <li class="nav-item">
@@ -49,7 +49,7 @@
                         <a class="nav-link @if (request()->is('login')) active @endif" aria-current="page"
                             href="/logout">
                             <i class="fa fa-sign-out mr-2"></i>
-                            Logout
+                            Keluar
                         </a>
                     </li>
                 @else
@@ -57,7 +57,7 @@
                         <a class="nav-link @if (request()->is('login')) active @endif" aria-current="page"
                             href="/login">
                             <i class="fa fa-sign-in mr-2"></i>
-                            Login
+                            Masuk
                         </a>
                     </li>
                 @endauth

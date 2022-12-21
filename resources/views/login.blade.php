@@ -1,7 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="row justify-content-center vh-100 align-items-center">
+    <div class="row justify-content-center vh-100 align-items-center bg-light">
+        <div class="col-6">
+            <img src="/img/login.jpg" class="img-fluid" alt="">
+        </div>
         <div class="col-6">
             <form action="" class="text-center" method="POST">
                 <h3>{{ env('APP_NAME') }}</h3>
