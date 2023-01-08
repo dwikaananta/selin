@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
+    <div class="btn-group w-100">
+        <a href="/users/{{ auth()->user()->id }}" class="btn btn-primary"><i class="fa fa-eye"></i> Lihat Profil</a>
+        <a href="/users/{{ auth()->user()->id }}/edit" class="btn btn-success"><i class="fa fa-edit"></i> Ubah Profil</a>
+    </div>
+
     <form action="/users/{{ $user->id }}" method="post">
         @csrf
         @method('PATCH')

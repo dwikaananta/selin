@@ -14,9 +14,8 @@
                     <th>no</th>
                     <th>nama</th>
                     <th>no_hp</th>
+                    <th>action</th>
                     <th>jenis_kelamin</th>
-                    <th>tempat_lahir</th>
-                    <th>tanggal_lahir</th>
                     <th>kk</th>
                     <th>status_kk</th>
                     <th>status_user</th>
@@ -54,9 +53,12 @@
                             <td>${res.data.users.from ++}</td>
                             <td>${user.nama}</td>
                             <td>${user.no_hp}</td>
+                            <td class="text-center">
+                                <a href="https://wa.me/${user.no_hp}" target="_blank">
+                                    <i class="fa text-success fa-whatsapp"></i>
+                                </a>
+                            </td>
                             <td>${jenis_kelamin[user.jenis_kelamin]}</td>
-                            <td>${user.tempat_lahir}</td>
-                            <td>${user.tanggal_lahir}</td>
                             <td>${user.kk}</td>
                             <td>${status_kk[user.status_kk]}</td>
                             <td>${status_user[user.status]}</td>

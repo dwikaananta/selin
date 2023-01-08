@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -116,7 +117,7 @@ class UserController extends Controller
             'kk' => 'required|size:16',
             'status_kk' => 'required',
             'alamat' => 'required',
-            'status' => 'required',
+            'status' => Rule::requiredIf(auth()->user()->status != 3),
         ]);
 
         $user->update($data);
@@ -125,6 +126,9 @@ class UserController extends Controller
             $user->update(['password' => Hash::make($req->password)]);
         }
 
+        if (auth()->user()->status == 3) {
+            return back()->with('success', 'Berhasil ubah data User !');
+        }
         return redirect('/users')->with('success', 'Berhasil ubah data User !');
     }
 

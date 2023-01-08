@@ -16,8 +16,8 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link @if (request()->is('users/' . auth()->user()->id . '/edit')) active @endif" aria-current="page"
-                            href="/users/{{ auth()->user()->id }}/edit">
+                        <a class="nav-link @if (request()->is('users/' . auth()->user()->id)) active @endif" aria-current="page"
+                            href="/users/{{ auth()->user()->id }}">
                             <i class="fa fa-user mr-2"></i>
                             Profil
                         </a>
@@ -56,7 +56,7 @@
                     @endif
                     <li class="nav-item">
                         <a id="wa" class="nav-link" aria-current="page"
-                            href="#">
+                            href="#" target="_blank">
                             <i class="fa fa-whatsapp mr-2"></i>
                             WhatsApp
                         </a>

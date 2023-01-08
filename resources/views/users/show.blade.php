@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
+    <div class="btn-group w-100">
+        <a href="/users/{{ auth()->user()->id }}" class="btn btn-primary"><i class="fa fa-eye"></i> Lihat Profil</a>
+        <a href="/users/{{ auth()->user()->id }}/edit" class="btn btn-success"><i class="fa fa-edit"></i> Ubah Profil</a>
+    </div>
+
     <div class="row mb-2 border-bottom">
         <div class="col-4 title">nama</div>
         <div class="col-md-8">: {{ $user->nama }}</div>
@@ -15,7 +20,7 @@
     </div>
     <div class="row mb-2 border-bottom">
         <div class="col-4 title">jenis_kelamin</div>
-        <div class="col-md-8">: {{ $user->jenis_kelamin }}</div>
+        <div class="col-md-8">: {{ $jenis_kelamin[$user->jenis_kelamin] }}</div>
     </div>
     <div class="row mb-2 border-bottom">
         <div class="col-4 title">tempat_lahir</div>
@@ -31,7 +36,7 @@
     </div>
     <div class="row mb-2 border-bottom">
         <div class="col-4 title">status_kk</div>
-        <div class="col-md-8">: {{ $user->status_kk }}</div>
+        <div class="col-md-8">: {{ $status_kk[$user->status_kk] }}</div>
     </div>
     <div class="row mb-2 border-bottom">
         <div class="col-4 title">alamat</div>
@@ -39,11 +44,11 @@
     </div>
     <div class="row mb-2 border-bottom">
         <div class="col-4 title">status</div>
-        <div class="col-md-8">: {{ $user->status }}</div>
+        <div class="col-md-8">
+            : {{ $status_user[$user->status] }}
+        </div>
     </div>
-    <div class="row mb-2 border-bottom">
-        <div class="col-4 title">password</div>
-        <div class="col-md-8">: {{ $user->password }}</div>
-    </div>
-    <x-form-save-button :submit="false"></x-form-save-button>
+    @if (auth()->user()->status != 3)
+        <x-form-save-button :submit="false"></x-form-save-button>
+    @endif
 @endsection
