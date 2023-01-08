@@ -42,6 +42,9 @@
                     <div class="col-8">: {{ $u->tanggal_mulai }}</div>
                     <div class="col-4">Tanggal Selesai</div>
                     <div class="col-8">: {{ $u->tanggal_selesai }}</div>
+                    <div class="col-12">
+                        <a href="/upacara/{{ $u->id }}" class="btn btn-sm btn-primary mb-1">Lihat detail . . .</a>
+                    </div>
                 </div>
             </div>
         @endforeach

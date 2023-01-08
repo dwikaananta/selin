@@ -22,6 +22,15 @@
                             Profil
                         </a>
                     </li>
+                    @if (auth()->user()->status == 3)
+                        <li class="nav-item">
+                            <a class="nav-link @if (request()->is('users')) active @endif" aria-current="page"
+                                href="/users">
+                                <i class="fa fa-users mr-2"></i>
+                                Anggota
+                            </a>
+                        </li>
+                    @endif
                     @if (auth()->user()->status != 3)
                         <li class="nav-item">
                             <a class="nav-link @if (request()->is('users')) active @endif" aria-current="page"
@@ -46,7 +55,14 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link @if (request()->is('login')) active @endif" aria-current="page"
+                        <a id="wa" class="nav-link" aria-current="page"
+                            href="#">
+                            <i class="fa fa-whatsapp mr-2"></i>
+                            WhatsApp
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if (request()->is('logout')) active @endif" aria-current="page"
                             href="/logout">
                             <i class="fa fa-sign-out mr-2"></i>
                             Keluar

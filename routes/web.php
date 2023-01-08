@@ -70,6 +70,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('/urunan', UrunanController::class);
     Route::resource('/urunan-user', UrunanUserController::class);
 
+    Route::get('/wa-sekretaris', function() {
+        return response()->json([
+            'user' => User::where('status', 2)->first(),
+        ]);
+    });
+
     Route::get('/logout', function (Request $req) {
         Auth::logout();
         $req->session()->invalidate();

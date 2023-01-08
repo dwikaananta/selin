@@ -18,7 +18,9 @@
                     <th>kk</th>
                     <th>status_kk</th>
                     <th>status_user</th>
-                    <th>bars</th>
+                    @if (auth()->user()->status != 3)
+                        <th>bars</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -56,11 +58,13 @@
                             <td>${user.kk}</td>
                             <td>${status_kk[user.status_kk]}</td>
                             <td>${status_user[user.status]}</td>
-                            <td class="text-center">
-                                <a href="${url}/${user.id}" class="fa mx-1 fa-eye text-info"></a>
-                                <a href="${url}/${user.id}/edit" class="fa mx-1 fa-edit text-success"></a>
-                                <span type="button" class="fa mx-1 fa-trash text-danger" onclick="handleDelete('${url}', ${user.id}, '{{ csrf_token() }}')"></span>
-                            </td>
+                            @if (auth()->user()->status != 3)
+                                <td class="text-center">
+                                    <a href="${url}/${user.id}" class="fa mx-1 fa-eye text-info"></a>
+                                    <a href="${url}/${user.id}/edit" class="fa mx-1 fa-edit text-success"></a>
+                                    <span type="button" class="fa mx-1 fa-trash text-danger" onclick="handleDelete('${url}', ${user.id}, '{{ csrf_token() }}')"></span>
+                                </td>
+                            @endif
                         </tr>`
                     })
                     document.querySelector('tbody').innerHTML = data.join('')

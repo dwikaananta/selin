@@ -37,6 +37,24 @@
     </script>
 
     @yield('js')
+
+    <script>
+        const fetchDataWa = async () => {
+            try {
+                const res = await axios.get(`/wa-sekretaris`)
+
+                if (res.data && res.data.user) {
+                    let user = res.data.user;
+
+                    document.querySelector('#wa').setAttribute('href', `https://wa.me/${user.no_hp}`)
+                }
+            } catch (err) {
+                console.error(err.response);
+            }
+        }
+
+        fetchDataWa();
+    </script>
 </body>
 
 </html>

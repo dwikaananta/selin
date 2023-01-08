@@ -33,13 +33,17 @@
     <div class="row">
         <div class="col-6 border-end">
             <h4 class="text-center">Data Dana Punia</h4>
-            <x-create-button href="/dana-punia/create?upacara_id={{ $upacara->id }}">Tambah Dana Punia
-            </x-create-button>
+            @if (auth()->user()->status != 3)
+                <x-create-button href="/dana-punia/create?upacara_id={{ $upacara->id }}">Tambah Dana Punia
+                </x-create-button>
+            @endif
         </div>
         <div class="col-6">
             <h4 class="text-center">Data Kas Keluar</h4>
-            <x-create-button href="/kas-keluar/create?upacara_id={{ $upacara->id }}">Tambah Kas Keluar
-            </x-create-button>
+            @if (auth()->user()->status != 3)
+                <x-create-button href="/kas-keluar/create?upacara_id={{ $upacara->id }}">Tambah Kas Keluar
+                </x-create-button>
+            @endif
         </div>
         <div class="col-6 border-end">
             <div class="table-responsive mb-2">
@@ -53,7 +57,9 @@
                             <th>no_hp</th>
                             <th>nominal</th>
                             <th>tanggal</th>
-                            <th>bars</th>
+                            @if (auth()->user()->status != 3)
+                                <th>bars</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody id="dana_punia">
@@ -71,7 +77,9 @@
                             <th>nominal</th>
                             <th>tanggal</th>
                             <th>keterangan</th>
-                            <th>bars</th>
+                            @if (auth()->user()->status != 3)
+                                <th>bars</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody id="kas_keluar">
@@ -110,10 +118,12 @@
                             <td>${dp.user_id ? users.filter(u => u.id == dp.user_id)[0]['no_hp'] : dp.no_hp}</td>
                             <td>${dp.nominal}</td>
                             <td>${dp.tanggal}</td>
-                            <td>
-                                <a href="${url_dana_punia}/${dp.id}/edit?upacara_id=${dp.upacara_id}" class="fa mx-1 fa-edit text-success"></a>
-                                <span type="button" class="fa mx-1 fa-trash-alt text-danger" onclick="handleDelete('${url_dana_punia}', ${dp.id}, '{{ csrf_token() }}', 'upacara_id={{ $upacara->id }}')"></span>
-                            </td>
+                            @if (auth()->user()->status != 3)
+                                <td>
+                                    <a href="${url_dana_punia}/${dp.id}/edit?upacara_id=${dp.upacara_id}" class="fa mx-1 fa-edit text-success"></a>
+                                    <span type="button" class="fa mx-1 fa-trash-alt text-danger" onclick="handleDelete('${url_dana_punia}', ${dp.id}, '{{ csrf_token() }}', 'upacara_id={{ $upacara->id }}')"></span>
+                                </td>
+                            @endif
                         </tr>`
                     })
                     document.querySelector('#dana_punia').innerHTML = data.join('')
@@ -146,10 +156,12 @@
                             <td>${kk.nominal}</td>
                             <td>${kk.tanggal}</td>
                             <td>${kk.keterangan}</td>
-                            <td>
-                                <a href="${url_kas_keluar}/${kk.id}/edit?upacara_id=${kk.upacara_id}" class="fa mx-1 fa-edit text-success"></a>
-                                <span type="button" class="fa mx-1 fa-trash-alt text-danger" onclick="handleDelete('${url_kas_keluar}', ${kk.id}, '{{ csrf_token() }}', 'upacara_id={{ $upacara->id }}')"></span>
-                            </td>
+                            @if (auth()->user()->status != 3)
+                                <td>
+                                    <a href="${url_kas_keluar}/${kk.id}/edit?upacara_id=${kk.upacara_id}" class="fa mx-1 fa-edit text-success"></a>
+                                    <span type="button" class="fa mx-1 fa-trash-alt text-danger" onclick="handleDelete('${url_kas_keluar}', ${kk.id}, '{{ csrf_token() }}', 'upacara_id={{ $upacara->id }}')"></span>
+                                </td>
+                            @endif
                         </tr>`
                     })
                     document.querySelector('#kas_keluar').innerHTML = data.join('')
