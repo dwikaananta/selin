@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-    <x-create-button href="/users/create">Tambah Data User</x-create-button>
+    @if (auth()->user()->status != 3)
+        <x-create-button href="/users/create">Tambah Data User</x-create-button>
+    @endif
 
     <input placeholder="Search . . ." class="mb-2" id="search">
 
