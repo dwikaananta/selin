@@ -27,12 +27,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"
         integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="/js.js"></script>
 
     <script>
         @if (session('success'))
-            alert("{{ session('success') }}")
+            Swal.fire({
+                title: '{{ session('success') }}',
+                icon: 'success',
+            })
         @endif
     </script>
 

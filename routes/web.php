@@ -51,7 +51,9 @@ Route::middleware('guest')->group(function () {
         if (Auth::attempt($credentials)) {
             $req->session()->regenerate();
 
-            return redirect()->intended('/');
+            $nama = $req->user()->nama;
+
+            return redirect()->intended('/')->with('success', "Berhasil login sebagai $nama");
         }
 
         return back()->withErrors([
@@ -80,7 +82,7 @@ Route::middleware('auth')->group(function () {
         Auth::logout();
         $req->session()->invalidate();
         $req->session()->regenerateToken();
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Berhasil logout');
     });
 });
 

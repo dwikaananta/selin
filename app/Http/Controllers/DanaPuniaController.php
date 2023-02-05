@@ -11,7 +11,8 @@ class DanaPuniaController extends Controller
 {
     public $users;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->users = User::noAdmin()->orderBy('nama')->get();
     }
 
@@ -30,6 +31,21 @@ class DanaPuniaController extends Controller
             $users = $this->users;
 
             return response()->json(compact('dana_punia', 'users'));
+        } else {
+            if ($req->laporan) {
+                $dana_punia = DanaPunia::select('*')->with('user')
+                    ->where('upacara_id', $req->upacara_id)
+                    ->when($req->search, function ($query) use ($req) {
+                        return $query->where(function ($query) use ($req) {
+                            // search
+                        });
+                    })
+                    ->get();
+
+                $users = $this->users;
+
+                return view('upacara.laporan-dana-punia', compact('dana_punia', 'users'));
+            }
         }
     }
 
@@ -62,7 +78,7 @@ class DanaPuniaController extends Controller
                 'alamat' => 'required',
                 'no_hp' => 'required',
             ]);
-            
+
             DanaPunia::create(array_merge($data, $data_2));
         }
 
@@ -108,7 +124,7 @@ class DanaPuniaController extends Controller
                 'alamat' => 'required',
                 'no_hp' => 'required',
             ]);
-            
+
             $dana_punia->update(array_merge($data, $data_2));
         }
 

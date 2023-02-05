@@ -6,11 +6,11 @@
     <table class="table table-sm">
         <thead>
             <tr>
-                <th>no</th>
-                <th>nama</th>
-                <th>nominal</th>
-                <th>tanggal</th>
-                <th>keterangan</th>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Nominal</th>
+                <th>Tanggal</th>
+                <th>Keterangan</th>
             </tr>
         </thead>
         <body>

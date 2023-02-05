@@ -48,7 +48,8 @@
                             <td>${u.total_kas_keluar}</td>
                             <td>${u.total_sesari}</td>
                             <td class="text-center">
-                                ${u.status == 1 ? `<a href="${url}/${u.id}?laporan=1" class="fa mx-1 fa-print text-info"></a>` : ''}
+                                ${u.status == 1 ? `<a href="${url}/${u.id}?laporan=1" class="fa mx-1 fa-print text-info" title="Laporan Kas Keluar"></a>` : ''}
+                                ${u.status == 1 ? `<a href="/dana-punia?upacara_id=${u.id}&laporan=1" class="fa mx-1 fa-print text-primary" title="Laporan Dana Punia"></a>` : ''}
                                 ${u.status == 1 ? '' : `<span type="button" onclick="handleUpdate(${u.id})" class="fa mx-1 fa-check"></span>`}
                                 <a href="${url}/${u.id}" class="fa mx-1 fa-eye text-info"></a>
                                 <a href="${url}/${u.id}/edit" class="fa mx-1 fa-edit text-success"></a>

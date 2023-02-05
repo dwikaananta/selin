@@ -50,4 +50,9 @@ class DanaPunia extends Model
     {
         return $this->belongsTo(Upacara::class, 'upacara_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

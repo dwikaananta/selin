@@ -93,20 +93,33 @@ if (searchInput) {
 
 // handleDelete
 const handleDelete = async (url, idDel, token, custom = "") => {
-    if (confirm("Yakin hapus data ?")) {
-        try {
-            const res = await axios.post(`${url}/${idDel}?${custom}`, {
-                _method: "DELETE",
-                _token: token,
-            });
+    Swal.fire({
+        title: "Yakin hapus data ?",
+        text: "Data yang dihapus mungkin tidak dapat dikembalikan",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Lanjut",
+        cancleButtonText: "Batal",
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const res = await axios.post(`${url}/${idDel}?${custom}`, {
+                    _method: "DELETE",
+                    _token: token,
+                });
 
-            if (res.data && res.data.status && res.data.status === "success") {
-                fetchData(1);
-                alert(res.data.msg);
+                if (
+                    res.data &&
+                    res.data.status &&
+                    res.data.status === "success"
+                ) {
+                    fetchData(1);
+                    alert(res.data.msg);
+                }
+            } catch (err) {
+                console.error(err.response);
             }
-        } catch (err) {
-            console.error(err.response);
         }
-    }
+    });
 };
 // end handleDelete
