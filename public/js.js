@@ -114,7 +114,10 @@ const handleDelete = async (url, idDel, token, custom = "") => {
                     res.data.status === "success"
                 ) {
                     fetchData(1);
-                    alert(res.data.msg);
+                    Swal.fire({
+                        title: res.data.msg,
+                        icon: "success",
+                    });
                 }
             } catch (err) {
                 console.error(err.response);
